@@ -26,7 +26,7 @@ def deploy(key_filename, hostname, prefix):
     ssh.exec_command('git clone https://github.com/KeremTurgutlu/sprint')
     # run process.py with crontab every 5 minutes
     ssh.exec_command('crontab -l > mycron')
-    ssh.exec_command('echo "* * * * * python ~/sprint/process.py {}" >> mycron'.format(prefix))
+    ssh.exec_command('echo "* * * * * sudo python ~/sprint/process.py {}" >> mycron'.format(prefix))
     ssh.exec_command('crontab mycron')
 
 #deploy.py
