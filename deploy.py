@@ -1,14 +1,8 @@
 '''
-Required Packages
-
 pip install paramiko
-
-
-
 '''
 
 import paramiko
-import time
 from user_definition import *
 
 #Connect to server
