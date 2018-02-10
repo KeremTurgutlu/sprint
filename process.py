@@ -6,13 +6,17 @@ import sys
 prefix = sys.argv[1]
 check_dir = '/srv/runme/'
 
+print("starting process.py now!")
+
 #get files under check_dir directory
 files = os.listdir(check_dir)
+print(files)
 
 #check files that begin with prefix
 n = len(prefix)
 good_files = [f for f in files if f[:n] == prefix]
 name_age = ''
+print(good_files)
 
 #open every file
 for file in good_files:
