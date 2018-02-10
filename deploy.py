@@ -30,8 +30,10 @@ def deploy(key_filename, hostname, prefix):
     ssh.close()
 
 #deploy.py arguments will be changed by user
-hostname = '54.200.19.10'
-key_filename = '/home/kerem/.ssh/bowbow.pem'
+# hostname = '54.200.19.10'
+hostname = '54.213.131.206'
+# key_filename = '/home/kerem/.ssh/bowbow.pem'
+key_filename = '/Users/danaiavg/Downloads/dan-recon.pem'
 prefix = 'blob'
 deploy(key_filename, hostname, prefix)
 
