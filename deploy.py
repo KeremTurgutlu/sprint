@@ -1,3 +1,7 @@
+# Sprint1: deploy.py Code
+# Danai Avgerinou, Ting Ting Liu, Shannon McNish, Jose A. Rodilla, Kerem Turgutlu
+# Group Name: Bowbowbowbowsquaddd
+
 '''
 pip install paramiko
 '''

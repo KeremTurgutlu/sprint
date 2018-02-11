@@ -1,3 +1,7 @@
+# Sprint1: process.py Code
+# Danai Avgerinou, Ting Ting Liu, Shannon McNish, Jose A. Rodilla, Kerem Turgutlu
+# Group Name: Bowbowbowbowsquaddd
+
 import json
 import os
 import sys
