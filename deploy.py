@@ -42,7 +42,7 @@ def deploy(key_filename, hostname, prefix):
 
 #deploy.py arguments will be changed by user
 # hostname = '54.200.19.10'
-hostname = '34.217.132.21'
+hostname = '54.218.28.127'
 # key_filename = '/home/kerem/.ssh/bowbow.pem'
 key_filename = '/Users/danaiavg/Downloads/dan-recon.pem'
 prefix = 'blob'
