@@ -32,7 +32,7 @@ for file in good_files:
 
 # print 'Final Output\n'
 # print name_age
-with open(check_dir + prefix + '.txt', 'w') as f:
+with open(check_dir + prefix + '.txt', 'w+') as f:
     f.write(name_age)
 
 
