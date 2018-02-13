@@ -37,11 +37,7 @@ def deploy(key_filename, hostname, prefix):
 
 #deploy.py arguments will be changed by user
 # hostname = '54.200.19.10'
-<<<<<<< HEAD
 hostname = '54.187.230.144'
-=======
-hostname = '54.218.28.127'
->>>>>>> fb7b190171ccd1b5a8af12fc5337037bd5111729
 # key_filename = '/home/kerem/.ssh/bowbow.pem'
 key_filename = '/Users/ting2liu/Desktop/pems/msan694.pem'
 prefix = 'blob'
