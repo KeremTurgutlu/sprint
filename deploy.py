@@ -13,8 +13,9 @@ def deploy(key_filename, hostname, prefix):
 
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    # change username to 'testtest' for submission
-    ssh.connect(hostname, username = 'ec2-user', key_filename = key_filename)
+    
+    # username to 'testtest' for submission
+    ssh.connect(hostname, username = 'testtest', key_filename = key_filename)
 
     if ssh == False:
         print 'Connection Error'
@@ -36,10 +37,8 @@ def deploy(key_filename, hostname, prefix):
     ssh.close()
 
 #deploy.py arguments will be changed by user
-# hostname = '54.200.19.10'
-hostname = '54.187.230.144'
-# key_filename = '/home/kerem/.ssh/bowbow.pem'
-key_filename = '/Users/ting2liu/Desktop/pems/msan694.pem'
-prefix = 'blob'
-deploy(key_filename, hostname, prefix)
+# hostname = '54.187.230.144'
+# key_filename = '/Users/ting2liu/Desktop/pems/msan694.pem'
+# prefix = 'blob'
+# deploy(key_filename, hostname, prefix)
 
