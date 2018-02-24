@@ -20,6 +20,7 @@ def deploy(private_key, hostname, prefix):
 
     # Clone the repo and start flask app
     ssh.exec_command('rm -rf sprint/; git clone https://github.com/KeremTurgutlu/sprint')
+    ssh.exec_command('mkdir somedir')
     ssh.exec_command('python sprint/flask_server.py {}'.format(prefix))
     ssh.close()
 
