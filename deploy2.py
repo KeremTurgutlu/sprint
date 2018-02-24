@@ -1,45 +1,26 @@
-# Sprint2: deploy.py Code
-# Danai Avgerinou, Ting Ting Liu, Shannon McNish, Jose A. Rodilla, Kerem Turgutlu
-# Group Name: Bowbowbowbowsquaddd
-
 import paramiko
+from flask_server import *
 
-def deploy(key_filename, hostname, prefix):
-    #Connect to server
-    print "Connecting to box"
-
+def deploy(private_key, hostname, prefix):
+    """
+    Inputs:
+        private_key(str) : path for key file
+        server_address(str) : address of server
+        prefix (str) : prefix to look for while processing
+    """
+    # Connect to server
+    print "Connecting to Box"
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    
-    # username to 'testtest' for submission
-    ssh.connect(hostname, username = 'ec2-user', key_filename = key_filename)
-
+    ssh.connect(hostname, username='testtest', key_filename=private_key)
     if ssh == False:
         print 'Connection Error'
-    else: print 'Successful Connection'
+    else:
+        print 'Successful Connection'
 
-    """
-    git, crontab  already installed in server
-    """
-    # clone repo to home dir
-    ssh.exec_command('rm -rf sprint/; rm -r mycron; crontab -r; git clone https://github.com/KeremTurgutlu/sprint')
-
-    #CREATE 'prefix' directory
-    # ssh.exec_command('mkdir /srv/runme/{}'.format(prefix))
-
-
-    # run process.py with crontab every 5 minutes
-    ssh.exec_command('crontab -e mycron')
-    ssh.exec_command('echo "*/5 * * * * python ~/sprint/process.py {}" >> mycron'.format(prefix))
-
-    ssh.exec_command('crontab mycron')
+    # Clone the repo and start flask app
+    ssh.exec_command('rm -rf sprint/; git clone https://github.com/KeremTurgutlu/sprint')
+    ssh.exec_command('python ~/sprint/flask_server.py '.format(prefix))
     ssh.close()
 
-#deploy.py arguments will be changed by user
-hostname = '54.187.230.144'
-key_filename = '/Users/ting2liu/Desktop/pems/msan694.pem'
-prefix = 'blob'
-deploy(key_filename, hostname, prefix)
-
-
-
+    pass
