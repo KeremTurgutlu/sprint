@@ -24,7 +24,5 @@ def deploy(private_key, hostname, prefix):
     ssh.exec_command('python ~/sprint/flask_server.py {}'.format(prefix))
     ssh.close()
 
-    pass
-
 if __name__ == '__main__':
     deploy('/home/kerem/.ssh/bowbow.pem', '34.215.16.244', 'cats')
