@@ -1,5 +1,8 @@
 import paramiko
 
+
+### DEPLOY2 DOESN'T RUN python sprint/flask_server.py {}'.format(prefix) !!!
+
 def deploy(private_key, hostname, prefix):
     """
     Inputs:
