@@ -1,5 +1,4 @@
 import paramiko
-from flask_server import *
 
 def deploy(private_key, hostname, prefix):
     """
