@@ -12,7 +12,8 @@ def deploy(private_key, hostname, prefix):
     print "Connecting to Box"
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(hostname, username='testtest', key_filename=private_key)
+    # change testtest from ec2-user
+    ssh.connect(hostname, username='ec2-user', key_filename=private_key)
     if ssh == False:
         print 'Connection Error'
     else:
@@ -20,7 +21,10 @@ def deploy(private_key, hostname, prefix):
 
     # Clone the repo and start flask app
     ssh.exec_command('rm -rf sprint/; git clone https://github.com/KeremTurgutlu/sprint')
-    ssh.exec_command('python ~/sprint/flask_server.py '.format(prefix))
+    ssh.exec_command('python ~/sprint/flask_server.py {}'.format(prefix))
     ssh.close()
 
     pass
+
+if __name__ == '__main__':
+    deploy('/home/kerem/.ssh/bowbow.pem', '34.215.16.244', 'cats')
