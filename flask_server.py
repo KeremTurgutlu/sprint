@@ -65,38 +65,17 @@ def main():
 def index():
     return "This is the homepage, you can POST your single line JSON files at localhost:8080/process_json/"
 
-# def start_flask(prefix):
-#     # define path
-#     prefix = 'prefix'
-#     # create empty Raw.txt
-#     raw_path = '/srv/runme/' + prefix + '/Raw.txt'
-#     create_empty_text(raw_path)
-#     # create empty proc.txt
-#     proc_path = '/srv/runme/' + prefix + '/proc.txt'
-#     create_empty_text(proc_path)
-#     # get logger
-#     logger = define_logger(raw_path, 's', 10)
-#     # run flask app
-#     app.run(host='0.0.0.0', port=8090, debug=True)
 
-
-
-if __name__ == '__main__':
-    """
-    Main function which will create empty files
-    Launch flask web-server
-    Rotate files as they expire every given interval
-    """
-    # get prefix
-    prefix = sys.argv[1]
-    #prefix = 'prefix'
-    # create empty Raw.txt
-    raw_path = '/srv/runme/' + prefix + '/Raw.txt'
-    create_empty_text(raw_path)
-    # create empty proc.txt
-    proc_path = '/srv/runme/' + prefix + '/proc.txt'
-    create_empty_text(proc_path)
-    # get logger
-    logger = define_logger(raw_path, 's', 10)
-    # run flask app
-    app.run(host='0.0.0.0', port=8080, debug=True)
+# main functions
+prefix = sys.argv[1]
+#prefix = 'prefix'
+# create empty Raw.txt
+raw_path = '/srv/runme/' + prefix + '/Raw.txt'
+create_empty_text(raw_path)
+# create empty proc.txt
+proc_path = '/srv/runme/' + prefix + '/proc.txt'
+create_empty_text(proc_path)
+# get logger
+logger = define_logger(raw_path, 's', 10)
+# run flask app
+app.run(host='0.0.0.0', port=8080, debug=True)
