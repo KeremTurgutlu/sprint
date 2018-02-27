@@ -93,4 +93,4 @@ def main():
 # # get logger
 # logger = define_logger(raw_path, 'm', 2)
 # run flask app
-app.run(host='0.0.0.0', port=8080, debug=True)
+app.run(host='0.0.0.0', port=8080)
