@@ -1,9 +1,24 @@
-# Initialize logger
 import logging
 from logging.handlers import TimedRotatingFileHandler
 from flask import Flask, abort, request
 import json
 import sys
+
+prefix = sys.argv[1]
+
+raw_path = '/srv/runme/' + prefix + '/Raw.txt'
+create_empty_text(raw_path)
+
+proc_path = '/srv/runme/' + prefix + '/proc.txt'
+create_empty_text(proc_path)
+
+logger = logging.getLogger("Rotating Log")
+logger.setLevel(logging.INFO)
+handler = TimedRotatingFileHandler(raw_path, when='m', interval=2)
+logger.addHandler(handler)
+
+app = Flask(__name__)
+
 
 def create_empty_text(path):
     """
@@ -14,23 +29,6 @@ def create_empty_text(path):
     with open(path, 'w') as f:
         pass
 
-# main functions
-prefix = sys.argv[1]
-#prefix = 'prefix'
-# create empty Raw.txt
-raw_path = '/srv/runme/' + prefix + '/Raw.txt'
-create_empty_text(raw_path)
-# create empty proc.txt
-proc_path = '/srv/runme/' + prefix + '/proc.txt'
-create_empty_text(proc_path)
-
-logger = logging.getLogger("Rotating Log")
-logger.setLevel(logging.INFO)
-handler = TimedRotatingFileHandler(raw_path, when='m', interval=2)
-logger.addHandler(handler)
-
-
-app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def main():
     """
