@@ -27,11 +27,17 @@ def deploy(private_key, hostname, prefix):
     # ssh.exec_command('nohup python ~/sprint/flask_server.py %s </dev/null &>/dev/null &' % prefix)
     # ssh.exec_command('screen -S runflask')
     # ssh.exec_command('screen -S runflask -X python ~/sprint/flask_server.py %s' % prefix)
+    # time.sleep(2)
+    # transport = ssh.get_transport()
+    # channel = transport.open_session()
+    # channel.exec_command('python ~/sprint/flask_server.py %s' % prefix)
+    # time.sleep(2)
 
-    transport = ssh.get_transport()
-    channel = transport.open_session()
-    channel.exec_command('python ~/sprint/flask_server.py %s' % prefix)
-    time.sleep(2)
+    # run process.py with crontab every 5 minutes
+    ssh.exec_command('crontab -e runflask')
+    ssh.exec_command('echo "* * * * * python ~/sprint/process.py {}" >> runflask'.format(prefix))
+
+    ssh.exec_command('crontab runflask')
     ssh.close()
 
 if __name__ == '__main__':
