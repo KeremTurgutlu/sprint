@@ -75,6 +75,7 @@ def main():
                 f.write(name + '\t' + str(age) + '\n')
         except:
             print("Not a 'valid' JSON blob: {}".format(text))
+        return 'OK'
 
 # @app.route('/', methods=['GET'])
 # def index():
