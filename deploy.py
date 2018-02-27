@@ -45,5 +45,5 @@ def deploy(private_key, hostname, prefix):
     ssh.close()
 
 
-deploy('/Users/ting2liu/Desktop/pems/t2liu-rec.pem', '54.201.90.219', 'cats')
+deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '34.215.133.170', 'cats')
 
