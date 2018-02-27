@@ -25,10 +25,10 @@ def deploy(private_key, hostname, prefix):
     # Clone the repo and start flask app
     ssh.exec_command('rm -rf sprint/; git clone https://github.com/KeremTurgutlu/sprint')
 
-#    ssh.exec_command('screen -d -m -S flask python ~/sprint/flask_server.py %s' % prefix)
-    ssh.exec_command('screen')
-    ssh.exec_command('echo "python ~/sprint/flask_server.py {}"'.format(prefix))
+    ssh.exec_command('screen -d -m -S flask python ~/sprint/flask_server.py %s' % prefix)
+    # ssh.exec_command('screen')
+    # ssh.exec_command('echo "python ~/sprint/flask_server.py {}"'.format(prefix))
     ssh.close()
 
 if __name__ == '__main__':
-    deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '52.37.88.235', 'cats')
+    deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '34.208.199.55', 'cats')
