@@ -37,7 +37,7 @@ def define_logger(path, when, interval):
 
 
 app = Flask(__name__)
-@app.route('/process_json', methods=['POST'])
+@app.route('/', methods=['POST'])
 def main():
     """
     Flask app which will listen to JSON POST requests at port 8080
@@ -61,9 +61,9 @@ def main():
         except:
             print("Not a 'valid' JSON blob: {}".format(text))
 
-@app.route('/', methods=['GET'])
-def index():
-    return "This is the homepage, you can POST your single line JSON files at localhost:8080/process_json/"
+# @app.route('/', methods=['GET'])
+# def index():
+#     return "This is the homepage, you can POST your single line JSON files at localhost:8080/process_json/"
 
 
 # main functions
@@ -76,6 +76,6 @@ create_empty_text(raw_path)
 proc_path = '/srv/runme/' + prefix + '/proc.txt'
 create_empty_text(proc_path)
 # get logger
-logger = define_logger(raw_path, 's', 10)
+logger = define_logger(raw_path, 'm', 2)
 # run flask app
 app.run(host='0.0.0.0', port=8080, debug=True)
