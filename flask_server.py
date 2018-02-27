@@ -6,6 +6,8 @@ import sys
 
 prefix = sys.argv[1]
 app = Flask(__name__)
+raw_path = '/srv/runme/' + prefix + '/Raw.txt'
+proc_path = '/srv/runme/' + prefix + '/proc.txt'
 
 logger = logging.getLogger("Rotating Log")
 logger.setLevel(logging.INFO)
@@ -21,11 +23,10 @@ def create_empty_text(path):
     with open(path, 'w') as f:
         pass
 
-raw_path = '/srv/runme/' + prefix + '/Raw.txt'
-create_empty_text(raw_path)
 
-proc_path = '/srv/runme/' + prefix + '/proc.txt'
+create_empty_text(raw_path)
 create_empty_text(proc_path)
+
 
 @app.route('/', methods=['POST'])
 def main():

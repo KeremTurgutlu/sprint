@@ -32,4 +32,4 @@ def deploy(private_key, hostname, prefix):
 
 
 # Please append deploy('path_to_ssh_key_private_key', 'server-address', 'prefix') below:
-deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '34.218.64.64', 'cats')
+deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '34.218.64.64', 'dogs')
