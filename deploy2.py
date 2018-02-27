@@ -29,4 +29,4 @@ def deploy(private_key, hostname, prefix):
     ssh.close()
 
 if __name__ == '__main__':
-    deploy('/Users/ds-lorean/Documents/USF_old/501_Computation/AWS/694J.pem', '34.216.9.104', 'cats')
+    deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '52.37.88.235', 'cats')
