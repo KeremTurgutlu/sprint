@@ -29,7 +29,7 @@ def deploy(private_key, hostname, prefix):
     # ssh.exec_command('screen -S runflask')
     # ssh.exec_command('screen -S runflask -X python ~/sprint/flask_server.py %s' % prefix)
     time.sleep(2)
-    ssh.exec_command('screen -d -m python ~/sprint/flask_server.py %s' % prefix)
+    # ssh.exec_command('screen -d -m python ~/sprint/flask_server.py %s' % prefix)
     # transport = ssh.get_transport()
     # channel = transport.open_session()
     # channel.exec_command('python ~/sprint/flask_server.py %s' % prefix)
@@ -39,6 +39,8 @@ def deploy(private_key, hostname, prefix):
     # ssh.exec_command('crontab -e runflask')
     # ssh.exec_command('echo "* * * * * python ~/sprint/flask_server.py {}" >> runflask'.format(prefix))
     # ssh.exec_command('crontab runflask')
+
+    ssh.exec_command("""screen -d -m -s "runflask" python ~/sprint/flask_server.py %s"""%prefix)
     
     ssh.close()
 
