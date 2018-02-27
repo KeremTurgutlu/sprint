@@ -5,7 +5,6 @@
 import paramiko
 import time
 
-
 def deploy(private_key, hostname, prefix):
     """
     Inputs:
@@ -19,7 +18,7 @@ def deploy(private_key, hostname, prefix):
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     
     # change testtest from ec2-user
-    ssh.connect(hostname, username='testtest', key_filename=private_key)
+    ssh.connect(hostname, username='ec2-user', key_filename=private_key)
     if ssh == False:
         print 'Connection Error'
     else:
@@ -33,3 +32,4 @@ def deploy(private_key, hostname, prefix):
 
 
 # Please append deploy('path_to_ssh_key_private_key', 'server-address', 'prefix') below:
+deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '34.218.64.64', 'cats')
