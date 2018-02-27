@@ -24,13 +24,13 @@ def deploy(private_key, hostname, prefix):
 
     # Clone the repo and start flask app
     ssh.exec_command('rm -rf sprint/; git clone https://github.com/KeremTurgutlu/sprint')
-    ssh.exec_command('nohup python ~/sprint/flask_server.py %s </dev/null &>/dev/null &' % prefix)
+    # ssh.exec_command('nohup python ~/sprint/flask_server.py %s </dev/null &>/dev/null &' % prefix)
 
-    # ssh.exec_command('screen -d -m -S flask python ~/sprint/flask_server2.py %s' % prefix)
+    ssh.exec_command('screen -d -m python ~/sprint/flask_server.py %s' % prefix)
     time.sleep(2)
     ssh.close()
 
 if __name__ == '__main__':
     # deploy('/home/kerem/.ssh/bowbow.pem', '34.217.130.148', 'cats')
-    deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '34.212.97.24', 'cats')
+    deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '34.215.121.53', 'cats')
 
