@@ -23,21 +23,23 @@ def deploy(private_key, hostname, prefix):
         print 'Successful Connection'
 
     # Clone the repo and start flask app
-    ssh.exec_command('rm -rf sprint/; rm -r runflask; crontab -r; git clone https://github.com/KeremTurgutlu/sprint')
+    ssh.exec_command('rm -rf sprint/; git clone https://github.com/KeremTurgutlu/sprint')
+    # ssh.exec_command('rm -rf sprint/; rm -r runflask; crontab -r; git clone https://github.com/KeremTurgutlu/sprint')
     # ssh.exec_command('nohup python ~/sprint/flask_server.py %s </dev/null &>/dev/null &' % prefix)
     # ssh.exec_command('screen -S runflask')
     # ssh.exec_command('screen -S runflask -X python ~/sprint/flask_server.py %s' % prefix)
-    # time.sleep(2)
+    time.sleep(2)
+    ssh.exec_command('screen -d -m python ~/sprint/flask_server.py %s' % prefix)
     # transport = ssh.get_transport()
     # channel = transport.open_session()
     # channel.exec_command('python ~/sprint/flask_server.py %s' % prefix)
     # time.sleep(2)
 
     # run process.py with crontab every 5 minutes
-    ssh.exec_command('crontab -e runflask')
-    ssh.exec_command('echo "* * * * * python ~/sprint/flask_server.py {}" >> runflask'.format(prefix))
-
-    ssh.exec_command('crontab runflask')
+    # ssh.exec_command('crontab -e runflask')
+    # ssh.exec_command('echo "* * * * * python ~/sprint/flask_server.py {}" >> runflask'.format(prefix))
+    # ssh.exec_command('crontab runflask')
+    
     ssh.close()
 
 if __name__ == '__main__':
