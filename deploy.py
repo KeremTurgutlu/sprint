@@ -1,44 +1,36 @@
-# Sprint1: deploy.py Code
-# Danai Avgerinou, Ting Ting Liu, Shannon McNish, Jose A. Rodilla, Kerem Turgutlu
-# Group Name: Bowbowbowbowsquaddd
-
-'''
-pip install paramiko
-'''
 import paramiko
+import time
 
-def deploy(key_filename, hostname, prefix):
-    #Connect to server
-    print "Connecting to box"
+### DEPLOY2 DOESN'T RUN python sprint/flask_server.py {}'.format(prefix) !!!
 
+def deploy(private_key, hostname, prefix):
+    """
+    Inputs:
+        private_key(str) : path for key file
+        server_address(str) : address of server
+        prefix (str) : prefix to look for while processing
+    """
+    # Connect to server
+    print "Connecting to Box"
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     
-    # username to 'testtest' for submission
-    ssh.connect(hostname, username = 'testtest', key_filename = key_filename)
-
+    # change testtest from ec2-user
+    ssh.connect(hostname, username='ec2-user', key_filename=private_key)
     if ssh == False:
         print 'Connection Error'
-    else: print 'Successful Connection'
+    else:
+        print 'Successful Connection'
 
-    #Clone git repo to server
+    # Clone the repo and start flask app
+    ssh.exec_command('rm -rf sprint/; git clone https://github.com/KeremTurgutlu/sprint')
+    ssh.exec_command('nohup python ~/sprint/flask_server.py %s' % prefix)
 
-    """
-    git, crontab  already installed in server
-    """
-    # clone repo to home dir
-    ssh.exec_command('rm -rf sprint/; rm -r mycron; crontab -r; git clone https://github.com/KeremTurgutlu/sprint')
-
-    # run process.py with crontab every 5 minutes
-    ssh.exec_command('crontab -e mycron')
-    ssh.exec_command('echo "*/5 * * * * python ~/sprint/process.py {}" >> mycron'.format(prefix))
-
-    ssh.exec_command('crontab mycron')
+    # ssh.exec_command('screen -d -m -S flask python ~/sprint/flask_server2.py %s' % prefix)
+    # time.sleep(5)
     ssh.close()
 
-#deploy.py arguments will be changed by user
-# hostname = '54.187.230.144'
-# key_filename = '/Users/ting2liu/Desktop/pems/msan694.pem'
-# prefix = 'blob'
-# deploy(key_filename, hostname, prefix)
+if __name__ == '__main__':
+    # deploy('/home/kerem/.ssh/bowbow.pem', '34.217.130.148', 'cats')
+    deploy('/Users/ting2liu/Desktop/pems/msan694.pem', '34.208.199.55', 'cats')
 
